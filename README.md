@@ -35,5 +35,7 @@ Made With Love By Nxium ❤️
 1. Install Python 3.10+
 2. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/yourrepo.git
-   cd yourrepo
+   git clone https://github.com/hatchson/Nxium-Multi-Tool.git
+   cd Nxium Multi Tool
+   ```
+   This Should Work, If Not You Can Download The Source Code Or Executable File At Releases
