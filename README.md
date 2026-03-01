@@ -29,6 +29,9 @@ Made With Love By Nxium ❤️
 - ❌ Clean Exit System
 
 ---
+## Tutorial Links 😄
+https://www.youtube.com/watch?v=xXPnUGrQpBY - How To Make A Discord Webhook For File Generation
+
 
 ## 🖥 Usage
 
