@@ -1,1 +1,6 @@
 colorama
+requests
+datetime
+pypiwin32
+Crypto
+pycryptodome
